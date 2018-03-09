@@ -1,0 +1,3 @@
+/workshop/website/website		--	gen_context(system_u:object_r:web_exec_t,s0)
+/workshop/website/bin(/.*)?		--	gen_context(system_u:object_r:web_bin_t,s0)
+/workshop/website(/.*)?		gen_context(system_u:object_r:web_rw_t,s0)

@@ -1,0 +1,17 @@
+[Unit]
+Description=shellcode-web Service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+
+Restart=on-failure
+RestartSec=10
+
+WorkingDirectory=/workshop/website
+ExecStart=/workshop/website/website
+
+[Install]
+WantedBy=multi-user.target

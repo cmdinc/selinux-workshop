@@ -1,0 +1,57 @@
+policy_module(web, 1.0.0)
+
+########################################
+#
+# Declarations
+#
+
+type web_t;
+type web_exec_t;
+type web_bin_t;
+type web_rw_t;
+
+require {
+	class capability { dac_override sys_tty_config };
+	class capability2 block_suspend;
+	class file { execute execute_no_trans getattr open read relabelto };
+	class process execmem;
+	class tcp_socket { accept listen };
+}
+
+########################################
+#
+# web local policy
+#
+
+#============= web_t ==============
+allow web_t self:capability dac_override;
+allow web_t self:capability2 block_suspend;
+allow web_t self:process execmem;
+allow web_t self:tcp_socket { accept listen };
+allow web_t web_bin_t:file { open read };
+allow web_t self:capability sys_tty_config;
+allow web_t web_bin_t:file { execute execute_no_trans };
+
+#============= transitions ==============
+type_transition web_t web_bin_t:file web_bin_t;
+
+#============= web_bin_t ==============
+#fs_noxattr_type(web_bin_t)
+
+auth_read_passwd(web_t)
+automount_exec_config(web_t)
+corecmd_exec_shell(web_t)
+corenet_tcp_bind_generic_node(web_t)
+corenet_tcp_bind_monopd_port(web_t)
+domain_use_interactive_fds(web_t)
+files_read_etc_files(web_t)
+files_type(web_rw_t)
+inetd_service_domain(web_t, web_exec_t)
+kernel_read_net_sysctls(web_t)
+kernel_read_system_state(web_t)
+kernel_search_network_sysctl(web_t)
+manage_dirs_pattern(web_t, web_rw_t, web_rw_t)
+manage_files_pattern(web_t, web_rw_t, web_rw_t)
+manage_lnk_files_pattern(web_t, web_rw_t, web_rw_t)
+miscfiles_read_localization(web_t)
+sysnet_dns_name_resolve(web_t)

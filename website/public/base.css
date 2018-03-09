@@ -1,0 +1,73 @@
+#top-header {
+  position: absolute;
+}
+
+#submitbox {
+    position: relative;
+    left: 270px;
+    top: 200px;
+}
+
+body { 
+    background-color: #05303a;
+}
+
+.broken {
+    display: inline;
+    animation-name: flash;
+    animation-duration: 0.1s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-direction: alternate;
+    animation-play-state: running;
+}
+
+.flash {
+    display:inline;
+    animation-name: flash;
+    animation-duration: 4s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-play-state: running;
+}
+
+@keyframes flash {
+    from {color: #FF0009;}
+    to {color: black;}
+}
+
+input[type=search] {
+    border: 1px dotted #999;
+    border-radius: 5px;
+    width: 350px;
+    height: 30px;      
+    
+    -webkit-appearance: none;
+}
+
+input[type=submit] {
+    border: 1px dotted #999;
+    border-radius: 5px;
+    width: 70px;
+    height: 30px;      
+
+    -webkit-appearance: none;
+}
+
+#hiddenImage {
+    visibility:hidden;
+    margin-top: 400;
+    margin-left: 100;
+    animation-name: move;
+    animation-duration: 4s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+    animation-direction: alternate-reverse;
+    animation-play-state: running;
+}
+
+@keyframes move {
+    from {margin-left: 100;}
+    to {margin-left:500;}
+}
